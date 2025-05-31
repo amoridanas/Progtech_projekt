@@ -124,4 +124,7 @@ public class Ticket {
     public void setType(String type) {
         this.type = type;
     }
+    public void setId(long id) {
+        this.id = id;
+    }
 }

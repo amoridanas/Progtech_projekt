@@ -12,7 +12,7 @@ public class User {
     private LocalDateTime createdAt;
     private String role;
 
-    public User() {
+    public User(long id, String username, String fullName, String role) {
 
     }
 

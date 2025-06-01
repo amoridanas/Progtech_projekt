@@ -61,6 +61,25 @@ public class UserRepo {
 
         return users;
     }
+    public static List<User> getAllAdmins() {
+        List<User> admins = new ArrayList<>();
+        String sql = "SELECT * FROM users WHERE role = 'admin'";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                admins.add(new User(
+                        rs.getLong("id"),
+                        rs.getString("username"),
+                        rs.getString("full_name"),
+                        rs.getString("role")
+                ));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return admins;
+    }
     public static User getById(Long id) {
         String sql = "SELECT * FROM users WHERE id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
